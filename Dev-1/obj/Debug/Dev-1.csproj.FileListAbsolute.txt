@@ -1,6 +1,0 @@
-D:\Microsoft.Visual.Studio.Ultimate.2013-KOPiE[rarbg]\Projects\Dev-1\Dev-1\bin\Debug\Dev-1.exe.config
-D:\Microsoft.Visual.Studio.Ultimate.2013-KOPiE[rarbg]\Projects\Dev-1\Dev-1\obj\Debug\Dev-1.csprojResolveAssemblyReference.cache
-D:\Microsoft.Visual.Studio.Ultimate.2013-KOPiE[rarbg]\Projects\Dev-1\Dev-1\bin\Debug\Dev-1.exe
-D:\Microsoft.Visual.Studio.Ultimate.2013-KOPiE[rarbg]\Projects\Dev-1\Dev-1\bin\Debug\Dev-1.pdb
-D:\Microsoft.Visual.Studio.Ultimate.2013-KOPiE[rarbg]\Projects\Dev-1\Dev-1\obj\Debug\Dev-1.exe
-D:\Microsoft.Visual.Studio.Ultimate.2013-KOPiE[rarbg]\Projects\Dev-1\Dev-1\obj\Debug\Dev-1.pdb
