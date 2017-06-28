@@ -9,18 +9,22 @@ namespace DEV_4
     {
         static void Main(string[] args)
         {
+            const string QUESTION = "The entered sequence is a nondecreasing sequence? ";
+            const string INPUTPROMPT = "Enter each number from sequence through enter. Want to stop - press 'S'";
+            const string EXITPROPMT = "Press 'esc' to exit. Otherwise press any key to continue.";
+            const string FINISHPROMPT = "Press any key to finish.";
+            const string ERRMESSAGE = "Error! You entered invalid format of number or unnessesary space.";
             try
             {
                 if (args.Length == 0)
                 {
                     do
                     {
-                        Sequence nondecreaseSeq = new Sequence();
-                        int[] seq;
-                        seq = nondecreaseSeq.NumbTranslater();
-                        Console.WriteLine("The entered sequence is a nondecreasing sequence? ");
-                        Console.WriteLine(nondecreaseSeq.IsNondecreaseSequence(seq));
-                        Console.WriteLine("Press 'esc' to exit. Otherwise press any key to continue.");
+                        Sequence nondecSeq = new Sequence();
+                        Console.WriteLine(INPUTPROMPT);
+                        Console.WriteLine(QUESTION);
+                        nondecSeq.IsNondecrease();
+                        Console.WriteLine(EXITPROPMT);
                     }
                     while (Console.ReadKey(true).Key != ConsoleKey.Escape);
                 }
@@ -28,15 +32,15 @@ namespace DEV_4
                 {
                     CommandLine cmd = new CommandLine();
                     cmd.Args = args;
-                    Console.WriteLine("The entered sequence is a nondecreasing sequence? ");
+                    Console.WriteLine(QUESTION);
                     Console.WriteLine(cmd.IsNondecraseSequence());
-                    Console.WriteLine("Press any key to exit.");
+                    Console.WriteLine(FINISHPROMPT);
                     Console.ReadKey();
                 }
             }
             catch (Exception)
             {
-                Console.WriteLine("Error! You entered invalid format of number or unnessesary space.");
+                Console.WriteLine(ERRMESSAGE);
                 Console.ReadKey();
             }
         }

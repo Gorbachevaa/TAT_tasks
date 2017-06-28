@@ -2,6 +2,7 @@
 
 namespace DEV_4
 {
+    // Class that works with values from command line. 
     class CommandLine
     {
         public string[] Args { get; set; }

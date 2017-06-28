@@ -4,37 +4,33 @@ namespace DEV_4
 {
     class Sequence
     {
+        const string RESULT = "The entered sequence is a nondecreasing sequence? ";
         // Method that translaste entered numbers into an array of integer values.
-        public int[] NumbTranslater()
+        public int NumbTranslater()
         {
-            Console.Write("Enter a sequence of number with a space.");
-            Console.WriteLine("Enter one space between numbers. ");
-            Console.WriteLine("To finish input of number press Enter: ");
-            string[] tokens = Console.ReadLine().Split();
-            int[] number = new int[tokens.Length];
-            for (int i = 0; i < tokens.Length; i++)
-            {
-                number[i] = Convert.ToInt32(tokens[i], 10);
-            }
+            string token = Console.ReadLine();
+            int number = 0;
+            number = Convert.ToInt32(token, 10);
             return number;
         }
 
         // Method that checks if sequence is nondecreasing.
-        public bool IsNondecreaseSequence(int[] number)
+        public void IsNondecrease()
         {
             bool isNondecrease = true;
-            int i = 1;
-            int n = number.Length;
-            while (i < n)
+            int prevNumb = NumbTranslater(), nextNumb = 0;
+            do
             {
-                if (number[i] < number[i - 1])
+                nextNumb = NumbTranslater();
+                if (prevNumb > nextNumb)
                 {
                     isNondecrease = false;
-                    break;
                 }
-                i++;
-            } 
-            return isNondecrease;
+                prevNumb = nextNumb;
+            }
+            while ((Console.ReadKey(true).Key != ConsoleKey.S) && (isNondecrease));
+            Console.WriteLine(RESULT + isNondecrease);
+
         }
     }
 }
