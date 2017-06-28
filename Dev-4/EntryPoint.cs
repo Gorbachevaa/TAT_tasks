@@ -30,13 +30,14 @@ namespace DEV_4
                     cmd.Args = args;
                     Console.WriteLine("The entered sequence is a nondecreasing sequence? ");
                     Console.WriteLine(cmd.IsNondecraseSequence());
-                    Console.WriteLine("Press 'esc' to exit. Otherwise press any key to continue.");
+                    Console.WriteLine("Press any key to exit.");
                     Console.ReadKey();
                 }
             }
             catch (Exception)
             {
                 Console.WriteLine("Error! You entered invalid format of number or unnessesary space.");
+                Console.ReadKey();
             }
         }
     }
