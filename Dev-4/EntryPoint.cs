@@ -13,9 +13,9 @@ namespace DEV_4
                 {
                     Sequence nondecreaseSeq = new Sequence();
                     int[] seq;
-                    seq = nondecreaseSeq.numbTranslater();
+                    seq = nondecreaseSeq.NumbTranslater();
                     Console.WriteLine("The entered sequence is a nondecreasing sequence? ");
-                    Console.WriteLine(nondecreaseSeq.isNondecreaseSequence(seq));
+                    Console.WriteLine(nondecreaseSeq.IsNondecreaseSequence(seq));
                 }
                 catch (Exception)
                 {

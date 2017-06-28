@@ -5,7 +5,7 @@ namespace DEV_4
     class Sequence
     {
         // Method that translaste entered numbers into an array of integer values.
-        public int[] numbTranslater()
+        public int[] NumbTranslater()
         {
             Console.Write("Enter a sequence of number with a space.");
             Console.WriteLine("Enter one space between numbers. ");
@@ -20,7 +20,7 @@ namespace DEV_4
         }
 
         // Method that checks if sequence is nondecreasing.
-        public bool isNondecreaseSequence(int[] number)
+        public bool IsNondecreaseSequence(int[] number)
         {
             bool isNondecrease = true;
             int i = 1;
