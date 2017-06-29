@@ -25,6 +25,10 @@ namespace DEV_4
         {
             bool isNondecrease = true;
             int i = 1;
+            if (number.Length == 1)
+            {
+                isNondecrease = false;
+            }
             while (i < number.Length)
             {
                 if (number[i] < number[i - 1])
