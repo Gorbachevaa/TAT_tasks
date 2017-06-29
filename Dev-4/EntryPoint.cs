@@ -10,39 +10,28 @@ namespace DEV_4
         static void Main(string[] args)
         {
             const string QUESTION = "The entered sequence is a nondecreasing sequence? ";
-            const string INPUTPROMPT = "Enter each number from sequence through enter. Want to stop - press 'S'";
             const string EXITPROPMT = "Press 'esc' to exit. Otherwise press any key to continue.";
-            const string FINISHPROMPT = "Press any key to finish.";
             const string ERRMESSAGE = "Error! You entered invalid format of number or unnessesary space.";
-            try
+            const string SOLUTIONFORERROR = "Please, try again.";
+            do
             {
-                if (args.Length == 0)
+                try
                 {
-                    do
-                    {
-                        Sequence nondecSeq = new Sequence();
-                        Console.WriteLine(INPUTPROMPT);
-                        Console.WriteLine(QUESTION);
-                        Console.WriteLine(nondecSeq.IsNondecrease());
-                        Console.WriteLine(EXITPROPMT);
-                    }
-                    while (Console.ReadKey(true).Key != ConsoleKey.Escape);
-                }
-                else
-                {
-                    CommandLine cmd = new CommandLine();
-                    cmd.Args = args;
+                    Sequence nondecSeq = new Sequence();
+                    int[] sequence = nondecSeq.Input(args);
                     Console.WriteLine(QUESTION);
-                    Console.WriteLine(cmd.IsNondecraseSequence());
-                    Console.WriteLine(FINISHPROMPT);
+                    Console.WriteLine(nondecSeq.IsNondecrease(sequence));
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine(ERRMESSAGE);
+                    Console.WriteLine(SOLUTIONFORERROR);
                     Console.ReadKey();
                 }
+                Console.WriteLine(EXITPROPMT);                    
             }
-            catch (Exception)
-            {
-                Console.WriteLine(ERRMESSAGE);
-                Console.ReadKey();
-            }
+            while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+
         }
     }
 }
