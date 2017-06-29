@@ -4,12 +4,13 @@ namespace DEV_4
 {
     class Sequence
     {
+        const string INPUTPROMPT = "Enter a sequence of number with a one space. ";
+        const string CONDITIONTOFINISH = "To finish input of number press Enter: ";
         // Method that translaste entered numbers into an array of integer values.
-        public int[] NumbTranslater()
+        public int[] Input()
         {
-            Console.Write("Enter a sequence of number with a space.");
-            Console.WriteLine("Enter one space between numbers. ");
-            Console.WriteLine("To finish input of number press Enter: ");
+            Console.Write(INPUTPROMPT);
+            Console.WriteLine(CONDITIONTOFINISH);
             string[] tokens = Console.ReadLine().Split();
             int[] number = new int[tokens.Length];
             for (int i = 0; i < tokens.Length; i++)
@@ -20,12 +21,11 @@ namespace DEV_4
         }
 
         // Method that checks if sequence is nondecreasing.
-        public bool IsNondecreaseSequence(int[] number)
+        public bool IsNondecrease(int[] number)
         {
             bool isNondecrease = true;
             int i = 1;
-            int n = number.Length;
-            while (i < n)
+            while (i < number.Length)
             {
                 if (number[i] < number[i - 1])
                 {
