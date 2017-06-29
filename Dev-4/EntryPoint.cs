@@ -9,7 +9,6 @@ namespace DEV_4
         {
             const string TASKPROMPT = "The entered sequence is a nondecreasing sequence?";
             const string ERRORMSG = "Error! You entered invalid format of number or unnessesary space.";
-            const string MSGFOR1NUMBER = "One number is not a sequence.";
             const string EXITPROMPT = "Press 'esc' to exit. Or try again( Press any symbol.).";
             do
             {
