@@ -23,7 +23,7 @@ namespace DEV_4
                         Sequence nondecSeq = new Sequence();
                         Console.WriteLine(INPUTPROMPT);
                         Console.WriteLine(QUESTION);
-                        nondecSeq.IsNondecrease();
+                        Console.WriteLine(nondecSeq.IsNondecrease());
                         Console.WriteLine(EXITPROPMT);
                     }
                     while (Console.ReadKey(true).Key != ConsoleKey.Escape);

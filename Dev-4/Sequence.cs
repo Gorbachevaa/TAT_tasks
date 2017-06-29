@@ -4,9 +4,8 @@ namespace DEV_4
 {
     class Sequence
     {
-        const string RESULT = "The entered sequence is a nondecreasing sequence? ";
         // Method that translaste entered numbers into an array of integer values.
-        public int NumbTranslater()
+        public int Input()
         {
             string token = Console.ReadLine();
             int number = 0;
@@ -15,13 +14,13 @@ namespace DEV_4
         }
 
         // Method that checks if sequence is nondecreasing.
-        public void IsNondecrease()
+        public bool IsNondecrease()
         {
             bool isNondecrease = true;
-            int prevNumb = NumbTranslater(), nextNumb = 0;
+            int prevNumb = Input(), nextNumb = 0;
             do
             {
-                nextNumb = NumbTranslater();
+                nextNumb = Input();
                 if (prevNumb > nextNumb)
                 {
                     isNondecrease = false;
@@ -29,7 +28,8 @@ namespace DEV_4
                 prevNumb = nextNumb;
             }
             while ((Console.ReadKey(true).Key != ConsoleKey.S) && (isNondecrease));
-            Console.WriteLine(RESULT + isNondecrease);
+           // Console.WriteLine(RESULT + isNondecrease);
+            return isNondecrease;
 
         }
     }

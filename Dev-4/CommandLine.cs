@@ -28,7 +28,7 @@ namespace DEV_4
         }
 
         // Method that translate string array to int array. 
-        public void StrTranslater()
+        public void Input()
         {
             ArgsCounter();
             int n = AmountOfSymbols;
@@ -45,7 +45,7 @@ namespace DEV_4
         // Method that checks if sequence is nondecreasing.
         public bool IsNondecraseSequence()
         {
-            StrTranslater();
+            Input();
             bool isNondecrease = true;
             int i = 1;
             int n = AmountOfSymbols;
