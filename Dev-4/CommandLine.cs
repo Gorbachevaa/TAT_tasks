@@ -2,25 +2,30 @@
 
 namespace DEV_4
 {
-    public class Sequence
+    // Class that reads values from command line.
+    public class CommandLine
     {
-        public string[] Tokens { get; set; }
-        public int[] IntTokens { get; set; }
+        public string[] Args { get; set; }
+        public int[] IntArgs { get; set; }
 
-        // Method that assigns the entered values to class field tokens.
-        public void Inputer()
+        // Method that reads from coomand line and writes to console.
+        public void CmdReader()
         {
-            Tokens = Console.ReadLine().Split();
+            string[] args = Args;
+            foreach (string arg in args)
+            {
+                Console.Write(arg + " ");
+            }
             Console.WriteLine();
         }
         // Method that translastes entered numbers into an array of integer values.
         public void StrTransater()
         {
-            string[] tokens = Tokens;
-            IntTokens = new int[tokens.Length];
-            for (int i = 0; i < tokens.Length; i++)
+            string[] args = Args;
+            IntArgs = new int[args.Length];
+            for (int i = 0; i < args.Length; i++)
             {
-                IntTokens[i] = Convert.ToInt32(tokens[i], 10);
+                IntArgs[i] = Convert.ToInt32(args[i], 10);
             }
         }
 
@@ -28,7 +33,7 @@ namespace DEV_4
         public bool IsNondecrease()
         {
             StrTransater();
-            int[] number = IntTokens;
+            int[] number = IntArgs;
             bool isNondecrease = true;
             int i = 1;
             if (number.Length == 1)
@@ -46,6 +51,5 @@ namespace DEV_4
             }
             return isNondecrease;
         }
-
     }
 }

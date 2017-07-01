@@ -9,18 +9,15 @@ namespace DEV_4
     {
         static void Main(string[] args)
         {
-            const string QUESTION = "The entered sequence is a nondecreasing sequence? ";
-            const string EXITPROPMT = "Press 'esc' to exit. Otherwise press any key to continue.";
             const string ERRMESSAGE = "Error! You entered invalid format of number or unnessesary space.";
+            const string EXITPROPMT = "Press 'esc' to exit. Otherwize press any key to continue. ";
             const string SOLUTIONFORERROR = "Please, try again.";
             do
             {
                 try
                 {
-                    Sequence nondecSeq = new Sequence();
-                    int[] sequence = nondecSeq.Input(args);
-                    Console.WriteLine(QUESTION);
-                    Console.WriteLine(nondecSeq.IsNondecrease(sequence));
+                    Checker check = new Checker();
+                    check.CmdAnalyze(args);
                 }
                 catch (Exception)
                 {
