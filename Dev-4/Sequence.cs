@@ -30,12 +30,11 @@ namespace DEV_4
             StrTransater();
             int[] number = IntTokens;
             bool isNondecrease = true;
-            int i = 1;
             if (number.Length == 1)
             {
                 isNondecrease = false;
             }
-            while (i < number.Length)
+            for (int i = 1; i < number.Length; i++ )
             {
                 if (number[i] < number[i - 1])
                 {
