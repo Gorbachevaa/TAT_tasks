@@ -9,7 +9,7 @@ namespace DEV_4
         public int[] IntArgs { get; set; }
 
         // Method that reads from coomand line and writes to console.
-        public void CmdReader()
+        public void Reader()
         {
             string[] args = Args;
             foreach (string arg in args)
@@ -28,26 +28,23 @@ namespace DEV_4
                 IntArgs[i] = Convert.ToInt32(args[i], 10);
             }
         }
-
         // Method that checks if sequence is nondecreasing.
         public bool IsNondecrease()
         {
             StrTransater();
             int[] number = IntArgs;
             bool isNondecrease = true;
-            int i = 1;
             if (number.Length == 1)
             {
                 isNondecrease = false;
             }
-            while (i < number.Length)
+            for (int i = 1; i < number.Length; i++)
             {
                 if (number[i] < number[i - 1])
                 {
                     isNondecrease = false;
                     break;
                 }
-                i++;
             }
             return isNondecrease;
         }

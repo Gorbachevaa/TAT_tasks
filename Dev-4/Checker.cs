@@ -27,7 +27,7 @@ namespace DEV_4
                 CommandLine cmdSeq = new CommandLine();
                 cmdSeq.Args = args;
                 Console.Write(CMDPROMPT);
-                cmdSeq.CmdReader();
+                cmdSeq.Reader();
                 Console.WriteLine(QUESTION);
                 Console.WriteLine(cmdSeq.IsNondecrease());
             }
