@@ -17,10 +17,10 @@ namespace DEV_4
             {
                 try
                 {
-                    Sequence nondecSeq = new Sequence();
-                    int[] sequence = nondecSeq.Input(args);
+                    Sequence seq = new Sequence();
+                    seq.EnterViaCmdOrConsole(args);
                     Console.WriteLine(QUESTION);
-                    Console.WriteLine(nondecSeq.IsNondecrease(sequence));
+                    Console.WriteLine(seq.IsNondecrease());
                 }
                 catch (Exception)
                 {

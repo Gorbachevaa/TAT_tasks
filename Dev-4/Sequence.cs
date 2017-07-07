@@ -7,9 +7,9 @@ namespace DEV_4
         const string INPUTPROMPT = "Enter a sequence of number with a one space. ";
         const string CONDITIONTOFINISH = "To finish input of number press Enter: ";
         const string CMDPROMPT = "String from command line: ";
-
+        public int[] Number { get; set; }
         // Method that determines how sequence is entered and returns integer value of string.
-        public int[] Input(string[] args)
+        public void EnterViaCmdOrConsole(string[] args)
         {
             if (args.Length == 0)
             {
@@ -17,7 +17,7 @@ namespace DEV_4
                 Console.WriteLine(CONDITIONTOFINISH);
                 string[] tokens = Console.ReadLine().Split();
                 int[] numbSequence = StrTranslater(tokens);
-                return numbSequence;
+                Number = numbSequence;
             }
             else
             {
@@ -28,7 +28,7 @@ namespace DEV_4
                 }
                 Console.WriteLine();
                 int[] numbSequence = StrTranslater(args);
-                return numbSequence;
+                Number = numbSequence;
             }
         }
 
@@ -44,25 +44,23 @@ namespace DEV_4
         }
 
         // Method that checks if sequence is nondecreasing.
-        public bool IsNondecrease(int[] number)
+        public bool IsNondecrease()
         {
+            int[] number = Number;
             bool isNondecrease = true;
-            int i = 1;
             if (number.Length == 1)
             {
                 isNondecrease = false;
             }
-            while (i < number.Length)
+            for (int i = 1; i < number.Length; i++ )
             {
                 if (number[i] < number[i - 1])
                 {
                     isNondecrease = false;
                     break;
                 }
-                i++;
             }
             return isNondecrease;
-
         }
     }
 }
