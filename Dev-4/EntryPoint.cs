@@ -14,10 +14,10 @@ namespace DEV_4
             {
                 try
                 {
-                    Sequence seq = new Sequence();
-                    seq.TranslateEnteredNumbers();
+                    Sequence sequence = new Sequence();
+                    sequence.TranslateEnteredNumbers();
                     Console.WriteLine(TASKPROMPT);
-                    Console.WriteLine(seq.IsNondecrease());
+                    Console.WriteLine(sequence.IsNonDecrease());
                 }
                 catch (Exception)
                 {
