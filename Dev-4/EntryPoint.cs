@@ -18,6 +18,9 @@ namespace DEV_4
                 {
                     Checker check = new Checker();
                     check.CmdAnalyze(args);
+                    SequenceAnalyze sequenceAnalyze = new SequenceAnalyze();
+                    sequenceAnalyze.Tokens = check.Seq;
+                    sequenceAnalyze.WriteAnswer();
                 }
                 catch (Exception)
                 {
@@ -25,10 +28,9 @@ namespace DEV_4
                     Console.WriteLine(SOLUTIONFORERROR);
                     Console.ReadKey();
                 }
-                Console.WriteLine(EXITPROPMT);                    
+                Console.WriteLine(EXITPROPMT); 
             }
             while (Console.ReadKey(true).Key != ConsoleKey.Escape);
-
         }
     }
 }

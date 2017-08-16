@@ -2,14 +2,13 @@
 
 namespace DEV_4
 {
-    // Class that determines how sequence is entered and checks if sequence is nondecreasing.
+    // Class that determines how sequence is entered.
     class Checker
     {
         const string INPUTPROMPT = "Enter a sequence of number with a one space. ";
         const string CONDITIONTOFINISH = "To finish input of number press Enter: ";
         const string CMDPROMPT = "String from command line: ";
-        const string QUESTION = "The entered sequence is a nondecreasing sequence? ";
-
+        public string[] Seq { get; set; }
         // Method that determines how sequence is entered and checks if sequence is nondecreasing.
         public void CmdAnalyze(string[] args)
         {
@@ -17,19 +16,17 @@ namespace DEV_4
             {
                 Console.Write(INPUTPROMPT);
                 Console.WriteLine(CONDITIONTOFINISH);
-                Sequence nondecSeq = new Sequence();
-                nondecSeq.Inputer();
-                Console.WriteLine(QUESTION);
-                Console.WriteLine(nondecSeq.IsNondecrease());
+                Sequence sequence = new Sequence();
+                sequence.Inputer();
+                Seq = sequence.Tokens;
             }
             else
             {
-                CommandLine cmdSeq = new CommandLine();
-                cmdSeq.Args = args;
+                CommandLine cmdLine = new CommandLine();
+                cmdLine.Args = args;
                 Console.Write(CMDPROMPT);
-                cmdSeq.Reader();
-                Console.WriteLine(QUESTION);
-                Console.WriteLine(cmdSeq.IsNondecrease());
+                cmdLine.Reader();
+                Seq = cmdLine.Args;
             }
         }
     }
