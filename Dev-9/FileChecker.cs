@@ -8,18 +8,7 @@ namespace Dev_9
     {
         public string[] SequencesFromFile { get; set; }
         // The amount of sequences in file.
-        private int amount;
-        public int Amount
-        {
-            get
-            {
-                return amount;
-            }
-            set
-            {
-                amount = value;
-            }
-        }
+        public int Amount { get; set; }
         // Method reads data from file, returns an array of original sequences.
         public string[] Read(string filename)
         {

@@ -12,15 +12,25 @@ namespace Dev_9
         const string TEXTFORCHANGEDSTRING = "Changed string: ";
         static void Main(string[] args)
         {
-            SymbolsReplacement symbolReplacement = new SymbolsReplacement();
-            symbolReplacement.Replacer();
-            Console.Write(TEXTFORFIRSTSTRING);
-            symbolReplacement.Outputer(symbolReplacement.NotChangingSequence);
-            Console.Write(TEXTFORCHANGINGSTRING);
-            symbolReplacement.Outputer(symbolReplacement.ChangingSequence);
-            Console.Write(TEXTFORCHANGEDSTRING);
-            symbolReplacement.Outputer(symbolReplacement.ChangedSequence);
-            Console.ReadKey();
+            try
+            {
+                SymbolsReplacer symbolReplacer = new SymbolsReplacer();
+                symbolReplacer.Replace();
+                Console.Write(TEXTFORFIRSTSTRING);
+                symbolReplacer.Output(symbolReplacer.NotChangingSequence);
+                Console.Write(TEXTFORCHANGINGSTRING);
+                symbolReplacer.Output(symbolReplacer.ChangingSequence);
+                Console.Write(TEXTFORCHANGEDSTRING);
+                symbolReplacer.Output(symbolReplacer.ChangedSequence);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error:", ex.Message);
+            }
+            finally
+            {
+                Console.ReadKey();
+            }
         }
     }
 }
