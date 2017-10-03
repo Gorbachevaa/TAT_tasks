@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace Dev_9
 {
     // Class that replaces one subsequence by another.
@@ -11,8 +12,8 @@ namespace Dev_9
         // Method replaces subsequences and defines modified sequence.
         public void Replace()
         {
-            FileChecker fileChecker = new FileChecker();
-            string[] stringArray = fileChecker.Read(SEQUENCEROMFILE);
+            //FileReader fileChecker = ;
+            List<string> stringArray = new FileReader().Read(SEQUENCEROMFILE);
             NotChangingSequence = stringArray[0].ToCharArray();
             ChangingSequence = stringArray[1].ToCharArray();
 
@@ -48,7 +49,7 @@ namespace Dev_9
             randPos = dataSequence[0];
             lengthSubseq = dataSequence[1];
             char[] subsequence = new char[lengthSubseq];
-            for (int i = 0; i < lengthSubseq; i++)
+            for (int i = 0; i < subsequence.Length; i++)
             {
                 subsequence[i] = sequence[i + randPos];
             }
