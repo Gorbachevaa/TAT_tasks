@@ -7,10 +7,10 @@ namespace Dev_11
     // Converts Cyrillic letters to Latin letters and vise versa.
     class AlphabetTypeChanger
     {
+        // These values for handling special combination.
         const string LETTERS_BEFORE_IY = "иы";
         const char LETTER_BEFORE_Y = 'й';
         const char LETTER_BEFORE__ = 'я';
-        const char LETTER_BEFORE_C_K = 'h';
         public string[] COMB_FOR_I_LETTER = { "y", "i" };
         public string[] COMB_FOR_Y_LETTER = { "iy", "y" };
         public string[] COMB_FOR__LETTER = { "ia", "'" };
@@ -18,6 +18,7 @@ namespace Dev_11
         public string[] COMB_FOR_YA_LETTER = { "", "ya" };
         public string[] COMB_FOR_E_LETTER = { "ye", "e" };
 
+        const char LETTER_H = 'h';
         const string LETTER_Y = "y";
         public string[] COMB_FOR_C_LETTER = { "", "ч", "ц" };
         public string[] COMB_FOR_K_LETTER = { "х", "к" };
@@ -28,7 +29,7 @@ namespace Dev_11
         public string[] COMB_FOR_SH_LETTER = { "щ", "ш", "с" };
         public string[] COMB_FOR_ZH_LETTER = { "ж", "з" };
         public char[] LETTERS_BEFORE_Y = { 'e', 'u', 'a' };
-        public string[] LETTERS_BEFORE_SH = { "shch", "sh" };
+        public string[] LETTERS_BEFORE_SH = { "h", "c" };
 
         public string InputLine { get; set; }
         public string ChangedLine { get; set; }
@@ -61,11 +62,11 @@ namespace Dev_11
                     }
                 case 'е':
                     {
-                        return ssh.RightCombinationForEToReturn('е', COMB_FOR_E_LETTER, i);
+                        return ssh.CheckPresenseOfSpecialSymbolForE('е', COMB_FOR_E_LETTER, i);
                     }
                 case 'ё':
                     {
-                        return ssh.RightCombinationForEToReturn('ё', COMB_FOR_E_LETTER, i);
+                        return ssh.CheckPresenseOfSpecialSymbolForE('ё', COMB_FOR_E_LETTER, i);
                     }
                 case 'ж':
                     {
@@ -77,11 +78,11 @@ namespace Dev_11
                     }
                 case 'и':
                     {
-                        return ssh.RightCombinationToReturn('и', COMB_FOR_I_LETTER, LETTER_BEFORE_Y, i);
+                        return ssh.CheckPresenseOfSpecialSymbol('и', COMB_FOR_I_LETTER, LETTER_BEFORE_Y, i);
                     }
                 case 'й':
                     {
-                        return ssh.RightCombinationToReturn('й', COMB_FOR_IY_LETTER, LETTERS_BEFORE_IY, i);
+                        return ssh.CheckPresenseOfSpecialSymbol('й', COMB_FOR_IY_LETTER, LETTERS_BEFORE_IY, i);
                     }
                 case 'к':
                     {
@@ -154,11 +155,11 @@ namespace Dev_11
                     }
                 case 'ы':
                     {
-                        return ssh.RightCombinationToReturn('ы', COMB_FOR_Y_LETTER, LETTER_BEFORE_Y, i);
+                        return ssh.CheckPresenseOfSpecialSymbol('ы', COMB_FOR_Y_LETTER, LETTER_BEFORE_Y, i);
                     }
                 case 'ь':
                     {
-                        return ssh.RightCombinationToReturn('ь', COMB_FOR__LETTER, LETTER_BEFORE__, i);
+                        return ssh.CheckPresenseOfSpecialSymbol('ь', COMB_FOR__LETTER, LETTER_BEFORE__, i);
                     }
                 case 'э':
                     {
@@ -170,7 +171,7 @@ namespace Dev_11
                     }
                 case 'я':
                     {
-                        return ssh.RightCombinationToReturn('я', COMB_FOR_YA_LETTER, "ь", i);
+                        return ssh.CheckPresenseOfSpecialSymbol('я', COMB_FOR_YA_LETTER, "ь", i);
                     }
                 default: return ch.ToString();
             }
@@ -198,7 +199,7 @@ namespace Dev_11
             {
                 case 'a':
                     {
-                        return ssh.RightCombinationToReturn('a', COMB_FOR_A_LETTER, LETTER_Y, i);
+                        return ssh.CheckPresenseOfSpecialSymbol('a', COMB_FOR_A_LETTER, LETTER_Y, i);
                     }
                 case 'b':
                     {
@@ -206,7 +207,7 @@ namespace Dev_11
                     }
                 case 'c':
                     {
-                        return ssh.RightCombinationForCToReturn('c', COMB_FOR_C_LETTER, LETTER_BEFORE_C_K, i);
+                        return ssh.CheckPresenceOfSpecialSymbolForC('c', COMB_FOR_C_LETTER, LETTER_H, i);
                     }
                 case 'd':
                     {
@@ -214,7 +215,7 @@ namespace Dev_11
                     }
                 case 'e':
                     {
-                        return ssh.RightCombinationToReturn('e', COMB_FOR_EE_LETTER, LETTER_Y, i);
+                        return ssh.CheckPresenseOfSpecialSymbol('e', COMB_FOR_EE_LETTER, LETTER_Y, i);
                     }
                 case 'f':
                     {
@@ -234,7 +235,7 @@ namespace Dev_11
                     }
                 case 'k':
                     {
-                        return ssh.RightCombinationToReturn('k', COMB_FOR_K_LETTER, LETTER_BEFORE_C_K, i);
+                        return ssh.CheckPresenseOfSpecialSymbol('k', COMB_FOR_K_LETTER, LETTER_H, i);
                     }
                 case 'l':
                     {
@@ -263,7 +264,7 @@ namespace Dev_11
                     }
                 case 's':
                     {
-                        return ssh.RightCombinationToReturn('s', COMB_FOR_SH_LETTER, LETTERS_BEFORE_SH, i);
+                        return ssh.CheckPresenseOfSpecialSymbol('s', COMB_FOR_SH_LETTER, LETTERS_BEFORE_SH, i);
                     }
                 case 't':
                     {
@@ -271,7 +272,7 @@ namespace Dev_11
                     }
                 case 'u':
                     {
-                        return ssh.RightCombinationToReturn('u', COMB_FOR_U_LETTER, LETTER_Y, i);
+                        return ssh.CheckPresenseOfSpecialSymbol('u', COMB_FOR_U_LETTER, LETTER_Y, i);
                     }
                 case 'v':
                     {
@@ -279,11 +280,11 @@ namespace Dev_11
                     }
                 case 'y':
                     {
-                        return ssh.RightCombinationToReturn('y', COMB_FOR_LAT_Y_LETTER, LETTERS_BEFORE_Y, i);
+                        return ssh.CheckPresenseOfSpecialSymbol('y', COMB_FOR_LAT_Y_LETTER, LETTERS_BEFORE_Y, i);
                     }
                 case 'z':
                     {
-                        return ssh.RightCombinationToReturn('z', COMB_FOR_ZH_LETTER, LETTER_BEFORE_C_K, i); ;
+                        return ssh.CheckPresenseOfSpecialSymbol('z', COMB_FOR_ZH_LETTER, LETTER_H, i); ;
                     }
                 default: return ch.ToString();
             }
@@ -301,9 +302,6 @@ namespace Dev_11
             }
             return sb.ToString();
         }
-
     }
-
-
 }
 

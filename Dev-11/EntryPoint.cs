@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 namespace Dev_11
 {
-    // A programm that converts a string has written in Cyrillic to a line written in Latin, and vice versa.
-    // Transformation according to transliteration rules.
+    // Main method of the class converts a string has written in Cyrillic to a line written in Latin,
+    // and vice versa. Transformation according to the transliteration rules.
+    // Results displays in the console.
     class EntryPoint
     {
         const string ERRORMESSAGE = "Error!";
+        const string LATINLETTERS = "Wrong data! Letters should be Cyrillic only!";
         static void Main(string[] args)
         {
             try
@@ -14,9 +16,16 @@ namespace Dev_11
                 FileReader fr = new FileReader();
                 fr.Output();
                 List<string> str = fr.TextFile;
-                AlphabetTypeChanger atc = new AlphabetTypeChanger();
-                Console.WriteLine(atc.CyrToLat(str[0]).ToLower());
-                Console.WriteLine(atc.LatToCyr());
+                if (!(new AlphabetTypeChecker(str[0]).Check()))
+                {
+                    AlphabetTypeChanger atc = new AlphabetTypeChanger();
+                    Console.WriteLine(atc.CyrToLat(str[0]));
+                    Console.WriteLine(atc.LatToCyr());
+                }
+                else
+                {
+                    Console.WriteLine(LATINLETTERS);
+                }
             }
             catch (Exception ex)
             {
@@ -29,4 +38,3 @@ namespace Dev_11
         }
     }
 }
-

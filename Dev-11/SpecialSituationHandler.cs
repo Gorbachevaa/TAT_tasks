@@ -4,162 +4,198 @@ using System.Linq;
 
 namespace Dev_11
 {
-    // Handles special situation with transliteration.
+    // Class handles special situation with transliteration when one symbol converts to 2 symbols(or more). 
     class SpecialSituationHandler
     {
         const string SPECIALLETTERS = "аеёиоуъыьэюя";
         const string LATSCPECIALLETTERS = "aue";
         public string InputLine { get; set; }
-        // Case with Cyrillic "e". Returns  "ye" if "e" in the beggining of the line.
+
+        // Method handles case with Cyrillic "e". Returns  "ye" if "e" in the beggining of the line.
         // And after vowels and "ъ", "ь". Othervise returns Latin "e".
-        public string RightCombinationForEToReturn(char symbol, string[] returnedSymbols, int i)
+        // The method takes "symbol", returnSymbols and index of "symbol" - i.
+        public string CheckPresenseOfSpecialSymbolForE(char checkSymbol, string[] returnSymbols, int i)
         {
-            if ((LineBegins(symbol)))
+            if ((LineBegins(checkSymbol)))
             {
-                return returnedSymbols[0];
+                return returnSymbols[0];
             }
-            if (IsAfterSpecialLetters(symbol, i))
-                return returnedSymbols[0];
+            if (IsAfterSpecialLetters(checkSymbol, i))
+            {
+                return returnSymbols[0];
+            }
             else
             {
-                return returnedSymbols[1].ToString();
+                return returnSymbols[1].ToString();
             }
         }
-
-        // Case when two symbols in Latin are one in Cyrillic. (Example: zh,kh, iy, ia)
-        public string RightCombinationToReturn(char symbol, string[] returnedSymbols, char ch, int i)
+        // Method checks for the presense of the special symbol after "symbol". 
+        // If it has - this symbols form combination that transliterates in special way.
+        // (Example:  "zh" - "ж" , "kh" - "х", "ий" - "iy", "ья" - "ia")
+        // ReturnSymbols contain value for special combination and for just symbol.
+        // Char ch - special symbol.
+        public string CheckPresenseOfSpecialSymbol(char checkSymbol, string[] returnSymbols, char nextSymb, int i)
         {
-            if (IsBeforeSpecialLetter(symbol, ch, i))
+            if (IsBeforeSpecialLetter(checkSymbol, nextSymb, i))
             {
-                return returnedSymbols[0];
+                return returnSymbols[0];
             }
             else
             {
-                return returnedSymbols[1];
+                return returnSymbols[1];
             }
         }
         // Case for "c" and "ch". Returns "ч" if "ch", emptystring if "ch" is a part of "shch" 
         // and "ц" in usual case.
-        public string RightCombinationForCToReturn(char symbol, string[] returnedSymbols, char ch, int i)
+        public string CheckPresenceOfSpecialSymbolForC(char checkSymbol, string[] returnSymbols, char nextSymb, int i)
         {
-            if (IsAfterLetter(symbol, ch.ToString(), i))
+            if (IsAfterLetter(checkSymbol, nextSymb.ToString(), i) && (IsBeforeSpecialLetter(checkSymbol, nextSymb, i)))
             {
-                return returnedSymbols[0];
+                return returnSymbols[0];
             }
-            if (IsBeforeSpecialLetter(symbol, ch, i))
+            if (IsBeforeSpecialLetter(checkSymbol, nextSymb, i))
             {
-                return returnedSymbols[1];
+                return returnSymbols[1];
             }
             else
             {
-                return returnedSymbols[2];
+                return returnSymbols[2];
             }
         }
-        // Case for second letters in combination("й" in "ий"). Returns empty string if symbol 
-        //a part of combination.
-        public string RightCombinationToReturn(char symbol, string[] returnedSymbols, string str, int i)
+        // Method that checks for the presense of the special symbol before "symbol".
+        // Returns empty string if special symbol exists, otherwise - transliterates according to the rules.
+        public string CheckPresenseOfSpecialSymbol(char checkSymb, string[] returnSymbs, string nextS, int i)
         {
-            if (IsAfterLetter(symbol, str, i))
+            if (IsAfterLetter(checkSymb, nextS, i))
             {
-                return returnedSymbols[0];
+                return returnSymbs[0];
             }
             else
             {
-                return returnedSymbols[1];
+                return returnSymbs[1];
             }
         }
-        // Case for latin "y".
-        public string RightCombinationToReturn(char symbol, string[] returnedSymbols, char[] nextSymbs, int i)
+        // Method handles case with Latin "y". ("ye" - "е", "yu" - "ю", "ya" - "я").
+        // The diffrence is that after "symbol" can be more than one special symbol.
+        // Method takes an array of special symbols - nextSymbs.
+        public string CheckPresenseOfSpecialSymbol(char checkSymb, string[] returnSymbs, char[] nextSymbs, int i)
         {
-            for (int j = 0; j < nextSymbs.Length; j++)
+            int j;
+            for (j = 0; j < nextSymbs.Length; j++)
             {
-                if (IsBeforeSpecialLetter(symbol, nextSymbs[j], i))
+                if (IsBeforeSpecialLetter(checkSymb, nextSymbs[j], i))
                 {
-                    return returnedSymbols[j];
+                    return returnSymbs[j];
                 }
             }
-            if (!IsBeforeSpecialLetter(symbol, i))
-                return returnedSymbols[3];
-            else
-                return "";
-        }
-        // Case with Latin "s". Returns "щ" if ater "s" - "hch", "ш" after "h", cyrillic "с" if
-        // it is simple "s".
-        public string RightCombinationToReturn(char symbol, string[] returnedSymbols, string[] nextSymbs, int i)
-        {
-            for (int j = 0; j < nextSymbs.Length; j++)
+            if (!IsBeforeSpecialLetter(checkSymb, i))
             {
-                if (IsBeforeSpecialLetter(symbol, nextSymbs[j], i))
+                return returnSymbs[j++];
+            }
+            else
+            {
+                return "";
+            }
+        }
+        // Method handles case with Latin "s".
+        // Returns "щ" if symbol "s" is after  - "hch", "ш" - if after "h", 
+        //cyrillic "с" if "s" doesn't form special combination with next symbols.
+        public string CheckPresenseOfSpecialSymbol(char checkSymb, string[] returnSymbs, string[] nextSymbs, int i)
+        {
+            if (IsBeforeSpecialLetter(checkSymb, nextSymbs[0], i))
+            {
+                if (IsBeforeSpecialLetter('h', nextSymbs[1], i + 1))
                 {
-                    return returnedSymbols[j];
+                    //if ()
+                    return returnSymbs[0];
+                }
+                   
+                else
+                {
+                    return returnSymbs[1];
                 }
             }
-            if (!IsBeforeSpecialLetter(symbol, i))
-                return returnedSymbols[2];
+            if (!IsBeforeSpecialLetter(checkSymb, 'h', i))
+            {
+                return returnSymbs[2];
+            }
             else
+            {
                 return "";
+            }
         }
-        // Return true if line starts with "symbol".
-        public bool LineBegins(char symbol)
+        // Method defines if the line is started with the "symbol".
+        // In this case returns true, otherwise - false.
+        public bool LineBegins(char checkSymbol)
         {
             bool isBeginning = false;
-            if (InputLine.StartsWith(symbol.ToString()))
+            if (InputLine.StartsWith(checkSymbol.ToString()))
             {
                 isBeginning = true;
             }
             return isBeginning;
         }
-        // Return true if line ends with "symbol".
-        public bool LineEnds(char symbol)
+        // Method defines if the line is finished with the "symbol".
+        // In this case returns true, otherwise - false.
+        public bool LineEnds(char checkSymbol)
         {
             bool isEnding = false;
-            if (InputLine.EndsWith(symbol.ToString()))
+            if (InputLine.EndsWith(checkSymbol.ToString()))
             {
                 isEnding = true;
             }
             return isEnding;
         }
-        public bool IsAfterSpecialLetters(char symbol, int i)
+        // Method checks if "symbol" is situated after special letters(like vowels and etc.)
+        // Returns true if it does, otherwise - false. 
+        public bool IsAfterSpecialLetters(char checkSymbol, int i)
         {
-
             bool isAfterSpecialLetters = false;
-            if (!(LineBegins(symbol)) && SPECIALLETTERS.Contains(InputLine[i - 1].ToString()))
+            if (!(LineBegins(checkSymbol)) && SPECIALLETTERS.Contains(InputLine[i - 1].ToString()))
             {
                 isAfterSpecialLetters = true;
             }
             return isAfterSpecialLetters;
         }
-        public bool IsBeforeSpecialLetter(char symbol, int i)
+        // Method checks if "checkSymbol" is situated before special Letters.
+        //If it does returns true, otherwise - false.
+        public bool IsBeforeSpecialLetter(char checkSymbol, int i)
         {
             bool isBeforeSpeciaLatlLetters = false;
-            if (!(LineEnds(symbol)) && LATSCPECIALLETTERS.Contains(InputLine[i + 1].ToString()))
+            if (!(LineEnds(checkSymbol)) && LATSCPECIALLETTERS.Contains(InputLine[i + 1].ToString()))
             {
                 isBeforeSpeciaLatlLetters = true;
             }
             return isBeforeSpeciaLatlLetters;
         }
-        public bool IsBeforeSpecialLetter(char symbol, char ch, int i)
+        // Method checks if "checkSymbol" is situated before special Letter.
+        //If it does returns true, otherwise - false.
+        public bool IsBeforeSpecialLetter(char checkSymbol, char ch, int i)
         {
             bool isBeforeSpecialLetter = false;
-            if (!(LineEnds(symbol)) && (InputLine[i + 1] == ch))
+            if (!(LineEnds(checkSymbol)) && (InputLine[i + 1] == ch))
             {
                 isBeforeSpecialLetter = true;
             }
             return isBeforeSpecialLetter;
         }
-        public bool IsBeforeSpecialLetter(char symbol, string str, int i)
+        // Method checks if "checkSymbol" is situated before special Letters.
+        // If it does returns true, otherwise - false.
+        public bool IsBeforeSpecialLetter(char checkSymbol, string specLetters, int i)
         {
             bool isBeforeSpecialLetter = false;
-            if (!(LineEnds(symbol)) && InputLine.Contains(str))
+            if (( i != InputLine.Length) && (specLetters.Contains(InputLine[i + 1])))
             {
                 isBeforeSpecialLetter = true;
             }
             return isBeforeSpecialLetter;
         }
-        public bool IsAfterLetter(char symbol, string ch, int i)
+        // Method checks if "checkSymbol" is situated after special Letters.
+        // If it does returns true, otherwise - false.
+        public bool IsAfterLetter(char checkSymbol, string specLetter, int i)
         {
             bool isAfterYLetters = false;
-            if (!(LineBegins(symbol)) && ch.Contains(InputLine[i - 1].ToString()))
+            if (!(LineBegins(checkSymbol)) && specLetter.Contains(InputLine[i - 1].ToString()))
             {
                 isAfterYLetters = true;
             }
