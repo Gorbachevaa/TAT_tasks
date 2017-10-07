@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Dev_10
 {
@@ -18,12 +19,12 @@ namespace Dev_10
 
         //Creates array with repeating elements.
         //Return true if there are repeating elements, else - false.
-        public bool Create()
+        public bool CheckIfElementsEquals()
         {
             bool isMaken = true;
             double[] repeatElementsArray = new double[MINVALUE];
 
-            DoubleValuesCreate();
+            BuildNArraysOfRandomDoubleValues();
             OutputOriginalData(DoubleValuesArray);
 
             int length = 0;
@@ -34,13 +35,13 @@ namespace Dev_10
                     for (int k = 0; k < AmountOfDoubleValues; k++)
                     {
                         // The amount of repeating elements.
-                        int m = 0;
+                        int repeatedElementsNumber = 0;
                         for (int j = 0; j < AmountOfDoubleValues; j++)
                         {
                             if (Math.Abs(DoubleValuesArray[i][j] - DoubleValuesArray[n][k]) <= EPS)
                             {
-                                m++;
-                                if ((m == MINAMOUNTOFELEMENTS) &&
+                                repeatedElementsNumber++;
+                                if ((repeatedElementsNumber == MINAMOUNTOFELEMENTS) &&
                                     !(Contains(repeatElementsArray, DoubleValuesArray[i][j])))
                                 {
                                     repeatElementsArray[length] = DoubleValuesArray[i][j];
@@ -63,7 +64,7 @@ namespace Dev_10
             return isMaken;
         }
         // Method creates N arrays of random double values.
-        public void DoubleValuesCreate()
+        public void BuildNArraysOfRandomDoubleValues()
         {
             Random rand = new Random();
             AmountOfArrays = rand.Next(MINVALUE, MAXVALUE);
@@ -84,14 +85,17 @@ namespace Dev_10
         // Outputs original array that is generated randomly.
         public void OutputOriginalData(double[][] ArrayOfDoubleValues)
         {
+            StringBuilder sb = new StringBuilder(ArrayOfDoubleValues.Length);
             for (int i = 0; i < AmountOfArrays; i++)
             {
                 for (int j = 0; j < AmountOfDoubleValues; j++)
                 {
-                    Console.Write(ArrayOfDoubleValues[i][j] + " ");
+                    sb.Append(ArrayOfDoubleValues[i][j]);
+                    sb.Append(" ");
                 }
-                Console.WriteLine();
+                sb.Append("\n");
             }
+            Console.WriteLine(sb.ToString());
         }
         // Outputs array with elements, that have entered at least two subarray in original array.
         public void Output()
@@ -105,16 +109,15 @@ namespace Dev_10
         // Returns true if array contains the double value.
         public bool Contains(double[] repeatElementsArray, double value)
         {
-            bool isRepeatingValue = false;
+            bool isRepeatedValue = false;
             for (int i = 0; i < repeatElementsArray.Length; i++)
             {
                 if (repeatElementsArray[i] == value)
                 {
-                    isRepeatingValue = true;
-                    break;
+                    return true;
                 }
             }
-            return isRepeatingValue;
+            return isRepeatedValue;
         }
     }
 }
