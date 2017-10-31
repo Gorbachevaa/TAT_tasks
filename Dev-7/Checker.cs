@@ -5,7 +5,7 @@ namespace Dev_7
     /// <summary>
     /// Class checks side's validity and existance of the triangle.
     /// </summary>
-    class Checker
+    public class Checker
     {
         /// <summary>
         /// Checks triangle's existance.
@@ -25,6 +25,7 @@ namespace Dev_7
         public bool IsValidSides(double[] sides)
         {
             return ((sides[0] > 0) && (sides[1]) > 0 && (sides[2] > 0));
+            
         }
     }
 }

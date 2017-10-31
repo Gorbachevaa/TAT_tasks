@@ -3,7 +3,7 @@
 
 namespace Dev_7
 {
-    class SimpleTriangle : Triangle
+    public class SimpleTriangle : Triangle
     {
         /// <summary>
         /// Triangle class with different sides.
