@@ -10,6 +10,7 @@ namespace Dev_12
     {
         public const string EQUALITERAL = "The triangle is equaliteral.";
         public const string ISOSCELE = "The triangle is isoscele.";
+        public const string SIMPLE = "The triagle is simple";
         /// <summary>
         /// Test checks Triangle's Existance. Class Checker is tested.
         /// Input data - 3 numbers.
@@ -19,7 +20,7 @@ namespace Dev_12
         [TestMethod]
         public void positiveTestForTriangleExistance()
         {
-            double[] sides = { 2, 3, 4 };
+            double[] sides = { 1.7e307, 1.7e307, 1.7e307 };
             Checker checker = new Checker();
             bool actual = checker.IsTriangle(sides);
             bool expected = true;
@@ -34,7 +35,7 @@ namespace Dev_12
         [TestMethod]
         public void positiveTestForValidTriangleSides()
         {
-            double[] sides = { 2, 3, 4 };
+            double[] sides = { 0.01, 0.001, 0.0001 };
             Checker checker = new Checker();
             bool actual = checker.IsValidSides(sides);
             bool expected = true;
@@ -49,7 +50,7 @@ namespace Dev_12
         [TestMethod]
         public void negativeTestForValidTriangleSides()
         {
-            double[] sides = { 8, -1, 3 };
+            double[] sides = { -1, 0.01, 0 };
             Checker checker = new Checker();
             bool actual = checker.IsValidSides(sides);
             bool expected = false;
@@ -133,7 +134,7 @@ namespace Dev_12
         /// <summary>
         ///  Checks double values.
         /// Input data - 3 double values. And one of them differs by 10e-16.
-        /// Expected result - message "The triangle is equaliteral.
+        /// Expected result - message "The triangle is equaliteral."
         /// </summary>
         [TestMethod]
         public void negativeTestDoubleValues()
@@ -142,6 +143,20 @@ namespace Dev_12
             Builder builder = new Builder(sides);
             string actual = builder.Build(sides).GetTrType();
             string expected = ISOSCELE;
+            Assert.AreEqual(expected, actual);
+        }
+        /// <summary>
+        /// Checks double values.
+        /// Input data - 3 double values close to max double's value.
+        /// Expected result - message "The triagle is simple".
+        /// </summary>
+        [TestMethod]
+        public void positiveTestDoubleValuesForSimpleTriangle()
+        {
+            double[] sides = { 1.1 * 10e300, 1.2 * 10e300, 1.21 * 10e300 };
+            Builder builder = new Builder(sides);
+            string actual = builder.Build(sides).GetTrType();
+            string expected = SIMPLE;
             Assert.AreEqual(expected, actual);
         }
 
