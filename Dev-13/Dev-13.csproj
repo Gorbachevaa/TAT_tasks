@@ -41,17 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CriterionHandler.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="CustomerMoneyException.cs" />
+    <Compile Include="CustomerProductivityException.cs" />
+    <Compile Include="DeveloperBrainException.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeHandleException.cs" />
     <Compile Include="EmployeeTypeException.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="EmployeeHandler.cs" />
+    <Compile Include="IPickable.cs" />
     <Compile Include="Junior.cs" />
     <Compile Include="JuniorHandler.cs" />
     <Compile Include="Lead.cs" />
     <Compile Include="LeadHandler.cs" />
+    <Compile Include="Manager.cs" />
+    <Compile Include="MaxProductivityPick.cs" />
     <Compile Include="Middle.cs" />
     <Compile Include="MiddleHandler.cs" />
+    <Compile Include="MinHighQualifiedEmployeesPick.cs" />
+    <Compile Include="MinSumPick.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Senior.cs" />
     <Compile Include="SeniorHandler.cs" />
