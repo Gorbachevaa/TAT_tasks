@@ -2,7 +2,7 @@
 
 namespace Dev_7
 {
-    enum TriangleType
+    public enum TriangleType
     {
         Equaliteral,
         Isosceles,
@@ -12,7 +12,7 @@ namespace Dev_7
     /// Class build triangle according to rules. e.g. 
     /// If the sides are equal builder creates Equaliteral triangle.
     /// </summary>
-    class Builder
+    public class Builder
     {
         const double EPS = double.Epsilon;
         public double SideA { get; set; }

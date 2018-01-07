@@ -5,7 +5,7 @@ namespace Dev_7
     /// <summary>
     /// Class enters tthe triangle's sides.
     /// </summary>
-    class SidesInputer
+    public class SidesInputer
     {
         const string SIDEAPROMPT = "Please, enter triangle's side: ";
         const string BADVALUE = "Bad value. Please, enter again.";
@@ -35,6 +35,7 @@ namespace Dev_7
                     i++;
                     continue;
                 }
+                throw new FormatException();
             }
             return Sides;
         }

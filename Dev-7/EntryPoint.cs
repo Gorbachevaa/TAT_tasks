@@ -10,7 +10,7 @@ namespace Dev_7
         const string INVALID_SIDES = "Triangle's sides should be positive.Try enter valid numbers.";
         const string TRIANGLE_EXISTANCE = "Triangle doesn't exist.Try enter right numbers.";
         const string FORMAT_ESCEPTION = "Only numbers are needed. Please enter them.";
-        const string EXIT_OR_CONTINUE = "Press 'esc' to exit. Otherwise press any key to continue.";
+        const string EXITPROMPT = "Press any key to exit.";
         /// <summary>
         /// First sides of a triangle is inputed.
         /// Then Checker method is called. It checks if sides is valid(> 0) and if sides form the triangle.
@@ -42,11 +42,7 @@ namespace Dev_7
                     Builder builder = new Builder(sides);
                     Triangle triangle = builder.Build(sides);
                     Console.WriteLine(triangle.GetTrType());
-                    Console.WriteLine(EXIT_OR_CONTINUE);
-                    if(Console.ReadKey(true).Key != ConsoleKey.Escape)
-                    { 
-                        continue;
-                    }
+                    Console.WriteLine(EXITPROMPT);
                     Console.ReadKey();
                 }
                 catch (Exception)
