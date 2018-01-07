@@ -16,7 +16,7 @@ namespace TestWordPressBlog.PageObjects
         By passwordLocator = By.Id("user_pass");
         By loginButtonLocator = By.Id("wp-submit");
         By errorLocator = By.Id("login_error");
-
+        By logoutLocator = By.XPath("//*[contains(text(), 'logged out')]");
         public LoginPage(IWebDriver driver) : base(driver) { }
         /// <summary>
         /// Gets username box's locator.
@@ -46,6 +46,13 @@ namespace TestWordPressBlog.PageObjects
             get
             {
                 return driver.FindElement(loginButtonLocator);
+            }
+        }
+        public IWebElement LogOutText
+        {
+            get
+            {
+                return driver.FindElement(logoutLocator);
             }
         }
         public IWebElement ErrorBox
